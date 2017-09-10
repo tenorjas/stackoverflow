@@ -16,9 +16,12 @@ namespace stackoverflow.Models
         public ApplicationUser(string userName) : base(userName)
         {
         }
-
+        // parent class IdentityUser is metadata that contains properties Id, userName and Email
         public string FirstName {get; set;}
         public string LastName {get; set;}
+
+        public bool IsLoggedIn {get; set;}
+        public bool IsModerator {get; set;}
         
     }
 }
