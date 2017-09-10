@@ -10,6 +10,13 @@ namespace stackoverflow.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<AnswerModel> AnswerModel {get; set;}
+        public DbSet<ApplicationUser> ApplicationUser {get; set;}
+        public DbSet<CommentModel> CommentModel {get; set;}
+        public DbSet<QtieModel> QtieModel {get; set;}
+        public DbSet<QuestionModel> QuestionModel {get; set;}
+        public DbSet<TagModel> TagModel {get; set;}
+        
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
