@@ -10,7 +10,7 @@ namespace stackoverflow.Models
     {
         public int CommentID {get; set;}
         public string Body {get; set;}
-        public int UserId {get; set;}
+        public string UserId {get; set;}
         public DateTime PostDate {get; set;}
         public int QuestionID {get; set;}
         public int AnswerID {get; set;}

@@ -11,7 +11,7 @@ namespace stackoverflow.Models
         public int QuestionID {get; set;}
         public string Title {get; set;}
         public string Body {get; set;}
-        public int UserId {get; set;}
+        public string UserId {get; set;}
         public DateTime PostDate {get; set;}
         public int VoteCount {get; set;}
 
