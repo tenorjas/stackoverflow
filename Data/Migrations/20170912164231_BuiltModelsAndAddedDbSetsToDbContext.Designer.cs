@@ -11,9 +11,10 @@ using System;
 namespace stackoverflow.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170912164231_BuiltModelsAndAddedDbSetsToDbContext")]
+    partial class BuiltModelsAndAddedDbSetsToDbContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
