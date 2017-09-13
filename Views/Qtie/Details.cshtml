@@ -1,0 +1,39 @@
+@model stackoverflow.Models.QtieModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+<div>
+    <h4>QtieModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionModel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QuestionModel.QuestionID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TagModel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TagModel.TagID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.QtieID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+@model IEnumerable<stackoverflow.Models.CommentModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Body)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PostDate)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnswerModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionModel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswerModel.AnswerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionModel.QuestionID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CommentID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CommentID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CommentID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
