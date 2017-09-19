@@ -48,6 +48,15 @@
             @Html.DisplayFor(model => model.VoteCount)
         </dd>
     </dl>
+    <!-- List of answers goes here -->
+    @foreach(var answer in Model.Answers)
+    {
+        <p>@answer.Body</p>
+    }
+    <form asp-controller="Answer" asp-action="Create" asp-route-id=@Model.QuestionID method=POST>
+        <textarea name="answer"></textarea>
+        <button type="submit">Submit</button>
+    </form>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.QuestionID">Edit</a> |

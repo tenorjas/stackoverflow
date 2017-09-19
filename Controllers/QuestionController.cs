@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +14,12 @@ namespace stackoverflow
     public class QuestionController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public QuestionController(ApplicationDbContext context)
+        public QuestionController(ApplicationDbContext context, UserManager<ApplicationUser> um)
         {
             _context = context;
+            _userManager = um;
         }
 
         // GET: Question
@@ -33,7 +36,7 @@ namespace stackoverflow
                 return NotFound();
             }
 
-            var questionModel = await _context.QuestionModel
+            var questionModel = await _context.QuestionModel.Include(i => i.Answers)
                 .SingleOrDefaultAsync(m => m.QuestionID == id);
             if (questionModel == null)
             {
@@ -58,6 +61,8 @@ namespace stackoverflow
         {
             if (ModelState.IsValid)
             {
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                questionModel.UserId = user.Id;
                 _context.Add(questionModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

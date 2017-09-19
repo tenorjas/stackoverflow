@@ -13,9 +13,10 @@ namespace stackoverflow.Models
         public int AnswerID {get; set;}
         public string Body {get; set;}
         public string UserId {get; set;}
-        public DateTime PostDate {get; set;}
+        public DateTime PostDate {get; set;} = DateTime.Now;
         public int QuestionID {get; set;}
         public int VoteCount {get; set;}
+        public string ApplicationUserId {get; set;}
 
         public ApplicationUser ApplicationUser {get; set;}
         public QuestionModel QuestionModel {get; set;}

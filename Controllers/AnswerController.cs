@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +14,12 @@ namespace stackoverflow
     public class AnswerController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AnswerController(ApplicationDbContext context)
+        public AnswerController(ApplicationDbContext context, UserManager<ApplicationUser> um)
         {
             _context = context;
+            _userManager = um;
         }
 
         // GET: Answer
@@ -57,16 +60,13 @@ namespace stackoverflow
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AnswerID,Body,UserId,PostDate,QuestionID,VoteCount")] AnswerModel answerModel)
+        public async Task<IActionResult> Create([FromRoute]int id, [FromForm]string answer)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(answerModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["QuestionID"] = new SelectList(_context.QuestionModel, "QuestionID", "QuestionID", answerModel.QuestionID);
-            return View(answerModel);
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var newAnswer = new AnswerModel {QuestionID = id, Body = answer, ApplicationUserId = user.Id};
+            _context.AnswerModel.Add(newAnswer);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Details","Question",new{id});
         }
 
         // GET: Answer/Edit/5
