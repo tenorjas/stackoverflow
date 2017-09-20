@@ -42,16 +42,22 @@
             @Html.DisplayFor(model => model.PostDate)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.VoteCount)
+            @Html.DisplayNameFor(model => model.UpVotes)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.VoteCount)
+            @Html.DisplayFor(model => model.UpVotes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DownVotes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DownVotes)
         </dd>
     </dl>
     <!-- List of answers goes here -->
     @foreach(var answer in Model.Answers)
     {
-        <p>@answer.Body - </p>
+        <p>@answer.Body -  - @answer.PostDate</p>
     }
     <form asp-controller="Answer" asp-action="Create" asp-route-id=@Model.QuestionID method=POST>
         <textarea name="answer"></textarea>

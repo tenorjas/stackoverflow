@@ -12,6 +12,7 @@
     <title>Index</title>
 </head>
 <body>
+    <h1>Questions</h1>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -31,7 +32,10 @@
                     @Html.DisplayNameFor(model => model.PostDate)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.VoteCount)
+                    @Html.DisplayNameFor(model => model.UpVotes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DownVotes)
                 </th>
             <th></th>
         </tr>
@@ -52,7 +56,10 @@
                 @Html.DisplayFor(modelItem => item.PostDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VoteCount)
+                @Html.DisplayFor(modelItem => item.UpVotes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DownVotes)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.QuestionID">Edit</a> |

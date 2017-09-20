@@ -17,6 +17,7 @@ namespace stackoverflow.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -135,13 +136,15 @@ namespace stackoverflow.Data.Migrations
 
                     b.Property<string>("Body");
 
+                    b.Property<int>("DownVotes");
+
                     b.Property<DateTime>("PostDate");
 
                     b.Property<int>("QuestionID");
 
-                    b.Property<string>("UserId");
+                    b.Property<int>("UpVotes");
 
-                    b.Property<int>("VoteCount");
+                    b.Property<string>("UserId");
 
                     b.HasKey("AnswerID");
 
@@ -168,8 +171,6 @@ namespace stackoverflow.Data.Migrations
                     b.Property<bool>("EmailConfirmed");
 
                     b.Property<string>("FirstName");
-
-                    b.Property<bool>("IsModerator");
 
                     b.Property<string>("LastName");
 
@@ -263,13 +264,15 @@ namespace stackoverflow.Data.Migrations
 
                     b.Property<string>("Body");
 
+                    b.Property<int>("DownVotes");
+
                     b.Property<DateTime>("PostDate");
 
                     b.Property<string>("Title");
 
-                    b.Property<string>("UserId");
+                    b.Property<int>("UpVotes");
 
-                    b.Property<int>("VoteCount");
+                    b.Property<string>("UserId");
 
                     b.HasKey("QuestionID");
 
@@ -342,7 +345,7 @@ namespace stackoverflow.Data.Migrations
                         .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("stackoverflow.Models.QuestionModel", "QuestionModel")
-                        .WithMany()
+                        .WithMany("Answers")
                         .HasForeignKey("QuestionID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

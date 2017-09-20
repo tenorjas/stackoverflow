@@ -15,7 +15,8 @@ namespace stackoverflow.Models
         public string Body {get; set;}
         public string UserId {get; set;}
         public DateTime PostDate {get; set;} = DateTime.Now;
-        public int VoteCount {get; set;}
+        public int UpVotes {get; set;}
+        public int DownVotes {get; set;}
         public ICollection<AnswerModel> Answers {get; set;} = new HashSet<AnswerModel>();
 
         public ApplicationUser ApplicationUser {get; set;}

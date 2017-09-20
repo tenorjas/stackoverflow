@@ -15,7 +15,8 @@ namespace stackoverflow.Models
         public string UserId {get; set;}
         public DateTime PostDate {get; set;} = DateTime.Now;
         public int QuestionID {get; set;}
-        public int VoteCount {get; set;}
+        public int UpVotes {get; set;}
+        public int DownVotes {get; set;}
         public string ApplicationUserId {get; set;}
 
         public ApplicationUser ApplicationUser {get; set;}
